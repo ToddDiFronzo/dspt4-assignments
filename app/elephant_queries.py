@@ -20,7 +20,7 @@ cur = conn.cursor()
 print(type(cur))
 
 ### An example query
-query = 'SELECT * from test_table;'
+query = 'SELECT count(name) from test_table;'
 
 ### Note - nothing happened yet! We need to actually *fetch* from the cursor
 

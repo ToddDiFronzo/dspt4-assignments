@@ -1,5 +1,3 @@
-
-
 import os
 from dotenv import load_dotenv
 import psycopg2
@@ -20,33 +18,7 @@ print("CONNECTION", type(connection))
 cursor = connection.cursor()
 print("CURSOR", type(cursor))
 
-
-# # INSERT SOME DATA
-
-insert_query = """
-INSERT INTO test_table (name, data) VALUES 
-(
-	'A rowwwww', 
-	'null'
-),
-(
-	'Another row, with JSON',
-	'{"a":1, "b": ["dog", "cat", 42], "c":true}'::JSONB
-);"""
-
-# # adds one row this way
-# my_dict = { "a": 1, "b": ["dog", "cat", 42], "c": 'true' }
-	
-# insertion_query = "INSERT INTO test_table (name, data) VALUES (%s, %s)"
-# cursor.execute(insertion_query,
-#     ('A rowwwww', 'null')
-# )
-# cursor.execute(insertion_query,
-#     ('Another row, with JSONNNNN', json.dumps(my_dict))
-# )
-
-# way to add multiple items
-# my_dict = { "a": 1, "b": ["dog", "cat", 42], "c": 'true' }
+my_dict = { "a": 1, "b": ["dog", "cat", 42], "c": 'true' }
 
 # insertion_query = "INSERT INTO test_table (name, data) VALUES %s"
 # execute_values(cursor, insertion_query, [
@@ -55,8 +27,15 @@ INSERT INTO test_table (name, data) VALUES
 #     ('Third row', "3")
 # ])
 
+insertion_query = "INSERT INTO test_table (name, data) VALUES %s"
+execute_values(cursor, insertion_query, [
+    ('A rowwwww', 'null'),
+    ('Another row, with JSONNNNN', json.dumps(my_dict)),
+    ('Third row', "3")
+])
 
 # make sure we are committing the data
+
 connection.commit()
 
 cursor.close()
