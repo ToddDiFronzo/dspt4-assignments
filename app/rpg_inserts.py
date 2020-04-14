@@ -12,7 +12,7 @@ conn.row_factory = sqlite3.Row
 curs = conn.cursor()
 
 # How many characters are there?
-query_q1 = "SELECT  * FROM charactercreator_cleric;"
+query_q1 = "SELECT * FROM titanic; 
 results1 = curs.execute(query_q1).fetchall()
 #WHERE EMPLOYEE.SSN =CAST(PROSPECT.SSN AS INTEGER) 
 
@@ -31,7 +31,7 @@ cursor = connection.cursor()
 print("CURSOR", type(cursor))
 
 
-insertion_query = "INSERT INTO charactercreator_cleric(character_ptr_id, using_shield, mana) VALUES %s"
+insertion_query = "INSERT INTO titanic(item_id, name, value, weight) VALUES %s"
 execute_values(cursor, insertion_query, results1)
 
 # make sure we are committing the data
