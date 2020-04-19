@@ -17,9 +17,11 @@ conn.row_factory = sqlite3.Row
 curs = conn.cursor()
 
 # How many characters are there?
-query_q1 = "SELECT count(character_id) FROM charactercreator_character"; 
-results1 = curs.execute(query_q1).fetchall()
+query_q1 = "SELECT * FROM armory_weapon;"
+curs.execute(query_q1) 
+results1 = curs.fetchall()
 print(results1)
+
 
 load_dotenv()
 
@@ -35,14 +37,41 @@ client = pymongo.MongoClient(connection_uri)
 print("----------------")
 print("CLIENT:", type(client), client)
 
-db = client.todd_database # "test_database" or whatever you want to call it
-print("----------------")
-print("DB:", type(db), db)
+# db = client.todd_database # "test_database" or whatever you want to call it
+# print("----------------")
+# print("DB:", type(db), db)
 
-collection = db.pokemon_test # "pokemon_test" or whatever you want to call it
-print("----------------")
-print("COLLECTION:", type(collection), collection)
+# collection = db.rpg_test # "pokemon_test" or whatever you want to call it
+# print("----------------")
+# print("COLLECTION:", type(collection), collection)
 
-print("----------------")
-print("COLLECTIONS:")
-print(db.list_collection_names())  # shows a list of tables ("collections")
+# print("----------------")
+# print("COLLECTIONS:")
+# print(db.list_collection_names())  # shows a list of tables ("collections")
+
+results1 = list(results1)
+collection.insert_one(results1)
+print()
+# collection.insert_one({
+#     "name": "Pikachu",
+#     "level": 30,
+#     "exp": 76000000000,
+#     "hp": 400,
+# })                      # inserts a record("document") into our collection
+# print("DOCS:", collection.count_documents({}))   # similar to count(distinct ___ as row_count FROM my_table
+# print(collection.count_documents({"name": "Pikachu"}))
+
+
+
+
+
+
+
+# team = []
+# collection.insert_many(team)
+# print("DOCS:", collection.count_documents({}))  
+
+# query 1
+# high_levels = list(collection.find({"level":{"$gte":20}}))
+# for doc in high_levels:
+#     print(doc["name"])
