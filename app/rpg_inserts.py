@@ -12,7 +12,7 @@ conn.row_factory = sqlite3.Row
 curs = conn.cursor()
 
 # How many characters are there?
-query_q1 = "SELECT * FROM titanic; 
+query_q1 = "SELECT * FROM titanic;" 
 results1 = curs.execute(query_q1).fetchall()
 #WHERE EMPLOYEE.SSN =CAST(PROSPECT.SSN AS INTEGER) 
 
